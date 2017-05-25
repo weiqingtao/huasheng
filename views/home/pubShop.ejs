@@ -1,0 +1,140 @@
+<% include ../head %>
+<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main.css?v=1.0"/>
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.3&key=ebb3310e602e7027987911af5e30be56"></script>
+<style>
+	#myform input{
+		margin-top:6px;
+	}
+	#myform textarea{
+		margin-top:6px;
+	}
+	#myform label{
+		margin-top:6px;
+	}
+	#myform select{
+		margin-top:6px;
+	}
+</style>
+<script>
+function onSubPub(){
+	if(pubform.shopname.value==''){
+		alert('营业点名称不允许空');
+		pubform.shopname.focus();
+		return false;
+	}
+	if(pubform.shopintr.value==''){
+		alert('营业点简介不允许空');
+		pubform.shopintr.focus();
+		return false;
+	}
+	if(pubform.shoptype.value==0){
+		alert('请选择营业类别');
+		pubform.shoptype.focus();
+		return false;
+	}
+
+	return true;
+}
+</script>
+<div class="row">
+	   div class="col-sm-1"></div>
+	      <div class="col-sm-2"  >
+	      	<% include ./left %>
+	      </div>
+	      <div class="col-sm-8" id='main'>
+	      	<div id='toolbar' style='font-size:2em'>找到地图中准确位置，点击建立营业点</div>
+	      	
+	      	<div id="mapContainer" style='margin-top:36px;margin-left:12px;width:100%;height:600px'></div>
+			<div id="tip">
+    <input type="text" id="keyword" name="keyword" value="请输入关键字：(选定后搜索)" onfocus='this.value=""'/>
+	      	<script>
+	      		//初始化地图对象，加载地图
+			    var map = new AMap.Map('mapContainer', {
+					view: new AMap.View2D({
+						center: new AMap.LngLat(116.397428, 39.90923),
+						zoom: 18
+					})
+			    });
+			    AMap.plugin(['AMap.ToolBar','AMap.Scale','AMap.OverView'],
+				    function(){
+				        map.addControl(new AMap.ToolBar());
+
+				        map.addControl(new AMap.Scale());
+
+				        map.addControl(new AMap.OverView({isOpen:true}));
+				});
+				AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+      var autoOptions = {
+        city: "北京", //城市，默认全国
+        input: "keyword"//使用联想输入的input的id
+      };
+      autocomplete= new AMap.Autocomplete(autoOptions);
+      var placeSearch = new AMap.PlaceSearch({
+            city:'北京',
+            map:map
+      })
+      AMap.event.addListener(autocomplete, "select", function(e){
+         //TODO 针对选中的poi实现自己的功能
+         placeSearch.search(e.poi.name)
+      });
+    });
+
+				function eventHandler(e){
+					// alert(e.lng);
+					pubform.lng.value=e.lnglat.getLng();
+					pubform.lat.value=e.lnglat.getLat();
+					$('#myModal').modal('show');
+				}
+
+			    var listener = AMap.event.addListener(map,"click",eventHandler);
+			    
+	      	</script>
+	      </div>
+	      <div class="col-sm-1"></div>
+
+<!---------------- 模态框 ---------------------------->
+	      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			<form name='pubform' method='post' action='./pubshop' onsubmit='return onSubPub();' enctype="multipart/form-data">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							填写营业点信息
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group" id='myform'>
+						    <input type="text" class="form-control" name="shopname" placeholder="请输入营业点名称">
+
+						    <textarea class="form-control" rows="5" placeholder="请输入营业简介" name='shopintr'></textarea>
+						    <input type="text" class="form-control" name='keywords' placeholder="请输入查询关键词">
+						    <select class="form-control" name='shoptype'>
+						      <option value='0'>请选择经营类别</option>
+						      <% shoptypeRs.forEach(function(row){ %>
+						      <option value='<%-row.id%>'>
+						      <%-row.typename%>
+						      </option>
+						      <%})%>
+						    </select>
+						    <label for="lastname" class="col-sm-2 control-label">店铺图片</label>
+						    <input type="file" id="inputfile" name='photourl'>
+						    <input type='hidden' name='lng'>
+						    <input type='hidden' name='lat'>
+					  </div>
+					</div>
+					<div class="modal-footer" style='text-align:center'>
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<input type="submit" class="btn btn-primary" onclick='dian();' value='提交'>
+						</input>
+					</div>
+				</div><!-- /.modal-content -->
+			</form>
+			</div><!-- /.modal -->
+		</div>
+  </body>
+</html>

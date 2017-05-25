@@ -1,0 +1,208 @@
+@charset 'utf-8';
+*{
+	margin: 0px;
+	padding:0px;
+}
+/*头部右部分*/
+.head .right{
+	float: right;
+	color: #ffffff;
+}
+.head .right span{
+	color:#ffffff;
+	font-size: 12px;
+}
+.right img{
+	position: relative;
+	top:15px;
+	display: block;
+	float:left;
+ }
+ .right a{
+ 	font-size: 12px;
+ 	padding: 0 4px;
+ }
+ .head .clear{
+ 	clear: both;
+ }
+ /* 导航部分*/
+.navigator{
+	height: 99px;
+	background: url(../images/head-beijing.png) repeat-y;
+	background-size: 100%;
+	width:100%;
+
+}
+.navigator img{
+	display: block;
+	float: left;
+	padding-top: 25px;
+	padding-left:35px;
+}
+/* 导航列表部分*/
+.navigator .nav-1{
+	margin-right: 100px;
+	line-height: 99px;
+}
+.navigator .nav-1 ul li{
+    display: block;
+    float:right;
+	padding-left: 100px;
+}
+.nav-1 ul li a{
+	font-size: 18px;
+	font-family: 幼圆;
+	color: #ffffff;
+	padding: 5px 18px 5px 18px;
+	border-radius: 15px;
+}
+.nav-1 ul li a:hover{
+	border: 1px solid #ffffff;
+}
+/*中间内容部分*/
+.main .wp2{
+	width: 1171px;
+	margin: 0 auto;
+}
+.main .main-top{
+	padding: 35px 0;
+	text-align: center;
+	float: left;
+}
+.main-top strong{
+	font-size: 36px;
+	font-family: 微软雅黑;
+
+}
+.main-top p{
+	padding-top: 5px;
+	font-size: 14px;
+	font-family: Arial;
+}
+.main-down .main-down-left{
+	float: left;
+	width: 240px;
+	height: 650px;
+	border: 1px solid #b6b6be;
+	text-align: center;
+	margin-bottom: 40px;
+}
+.l1{
+	margin-top: 40px;
+}
+.l1 p{
+	margin-top: 13px;
+}
+.l2{
+    margin-top: 15px;
+	padding-left:30px;
+}
+.l2 ul li{
+	display: block;
+	float: left;
+	padding
+
+}
+.l2 .clear{
+	clear: both;
+}
+.l3{
+	float: left;
+	margin-left: 35px;
+	margin-top: 15px;
+
+}
+.l3 a{
+	font-family:微软雅黑;
+	font-size: 14px;
+	color: #a7abb2;
+}
+.l3 a:last-child{
+	color: red;
+}
+.l4{
+	margin-top: 15px;
+	margin-left: 35px;
+	width: 170px;
+	height: 10px;
+	border-radius: 5px;
+	background:url(../images/dengji.png) 0 0 no-repeat;
+}
+.l5{
+	margin-top: 30px;
+	font-size: 18px;
+	font-family: 微软雅黑;
+}
+.l5 span{
+	border-bottom: 1px solid  #a7abb2;
+	padding: 5px 0;
+}
+.l5 p{
+	margin-top: 23px;
+	padding: 12px 0 ;
+    background-color: #2ea6df;
+}
+.l5 a:first-child{
+	color: #706e6e;
+}
+.l5 a:last-child{
+	color: #ffffff;
+}
+
+/*中间内容右边部分*/
+.main-down-right{
+	width: 890px;
+	float: right;
+	margin-left: 38px;
+}
+.main-down-right .down-right1{
+	line-height: 50px;
+	height: 50px;
+	border-bottom: 1px solid #2ea6df ;
+}
+.main-down-right .down-right1 p{
+	font-size: 18px;
+	font-family: 微软雅黑;
+	background-color: #2ea6df;
+	width: 180px;
+	text-align: center;
+	color: #ffffff;
+}
+.main-down-right .down-right2{
+	margin-top: 40px;
+}
+.main-down-right .down-right2 input{
+	width: 260px;
+	height: 40px;
+	font-size: 14px;
+	color: #a7abb2;
+	font-family: 微软雅黑;
+	padding-left: 10px;
+}
+.main-down-right .down-right2 .a1{
+	width: 200px;
+	font-size: 18px;
+	font-family: 微软雅黑;
+	color: #ffffff;
+	background-color:#2ea6df;
+	margin-left: 37px;
+	cursor: pointer;
+}   
+.main-down-right .down-right2 ul li{
+	padding-bottom: 30px;
+}
+.main-down-right .down-right2 span{
+	font-size: 12px;
+	color: red;
+}
+.main-down-right .clear{
+	clear: both;
+
+}
+.main .clear{
+	clear: both;
+}
+
+
+
+

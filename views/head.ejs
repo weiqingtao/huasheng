@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title></title>
+    <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+   <script src="/javascripts/jquery-2.1.4.min.js"></script>
+   <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <style>
+   		.headStyle{
+   			 height: 2.5em;
+   			 margin-top:6px;
+   		}
+   </style>
+  </head>
+  <body>
+	    <div class="row">
+	      <div class="col-sm-1"></div>
+	      <div class="col-sm-2 headStyle" style='text-align: center' >
+	      	<span class="glyphicon glyphicon-home" style='font-size:1.4em'>
+	      	华盛建材租赁平台
+	      	</span>
+	      </div>
+	      <div class="col-sm-6 headStyle">
+	      	<% include ui/search %>
+	      </div>
+	      	<% if(loginbean){ %>
+	      	<div class="col-sm-2 headStyle" style='padding-top: 6px'>
+	      		你好,<%- loginbean.nicheng %>
+	      		<a href='/home/'>消息<span class="badge"><%-loginbean.msgnum%></span></a>&nbsp;
+	      		<% if(loginbean.role>0){ %>
+	      		<a href='/home/'>我的空间</a>&nbsp;
+	      		<% }else{ %>
+	      		<a href='/admin/'>管理员空间</a>&nbsp;
+	      		<% } %>
+	      		<a href='/users/logout'>注销</a>
+	      	<% }else{ %>
+	      	<div class="col-sm-2 headStyle">
+	      	<button type="button" class="btn btn-default" data-toggle="modal" data-target="#myModal">登陆/注册</button>
+	      	<% } %>
+	      </div>
+	      <div class="col-sm-1">
+	      	
+	      </div>
+	    </div>

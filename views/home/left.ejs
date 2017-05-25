@@ -1,0 +1,11 @@
+
+<a href="/home" class="list-group-item">消息</a>
+<% if(loginbean.role==1){ %>
+<a href="#" class="list-group-item" onclick='renzheng()'>身份认证</a>
+<% }else if(loginbean.role==2){%>
+	      			身份认证中
+	      		<%}else if(loginbean.role==3){%>
+<a href='/home/pubShop' class="list-group-item">开店</a>
+<%}else if(loginbean.role==4){%>
+<a href='/home/shopmanage' class="list-group-item">管理店铺</a>
+<%}%>

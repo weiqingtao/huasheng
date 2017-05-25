@@ -1,0 +1,85 @@
+王阳 11:21:31
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">
+		<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+		<script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+		<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main.css?v=1.0"/>
+    	<script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.3&key=c3c196ff3c8b93ae396a0a45d6753fcc"></script>
+	</head>
+	<body>
+		<div id="mapContainer" style="width: 800px;height: 600px;" data-toggle="modal" data-target="#myModal"></div>
+		<script>
+			var marker = null;
+			var map = new AMap.Map('mapContainer',{
+				//resizeEnable: true,
+				//rotateEnable: true,
+				//dragEnable: true,
+				//zoomEnable: true,
+				//设置可缩放的级别
+				//zooms: [3,18], //手机上默认为3~19缩放比例
+				//传入2D视图，设置中心点和缩放级别
+				view: new AMap.View2D({
+					center: new AMap.LngLat(116.397428, 39.90923),//120.001574,36.032374
+					zoom: 18
+				})
+			});
+			
+			var listener = 
+			AMap.event.addListener(map,"click",eventHandler)
+			
+			function eventHandler(e){
+			/*	var lnglat = e.lnglat;
+				alert(lnglat.lng); //经度
+				alert(lnglat.lat);	//纬度*/
+				marker = new AMap.Marker({
+					map:map,
+					position:e.lnglat,
+					icon:"http://webapi.amap.com/images/0.png",
+					offset:new AMap.Pixel(-10,-34),
+				});
+				marker.setMap(map);
+			}
+			function dian(){
+				var name = document.getElementById('name').value;
+				var jie = document.getElementById('jie').value;
+				marker.setLabel({
+					offset:new AMap.Pixel(-10,-20),
+					content:name
+				});
+				
+			}
+		</script>
+		
+		
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							信息
+						</h4>
+					</div>
+					<div class="modal-body">
+						名称：<input type="text" id="name" />
+						<br/>简介：<input type="text" id="jie" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary" onclick='dian();' data-dismiss="modal">
+							提交
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
+	</body>
+</html> 

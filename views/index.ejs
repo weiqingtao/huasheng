@@ -1,0 +1,79 @@
+<style type="text/css">
+    /* reset */
+    *{margin:0;padding:0;list-style-type:none;}
+    a{blr:expression(this.onFocus=this.blur())}/*去掉a标签的虚线框，避免出现奇怪的选中区域*/
+    :focus{outline:0;}
+    label{cursor:pointer;}
+    img{vertical-align:middle;}
+    table{empty-cells:show;border-collapse:collapse;border-spacing:0;}
+    h1{font-size:16px;}h2,h3,h4{font-size:14px;}h5,h6{font-size:12px;}
+    abbr,acronym{border:0;font-variant:normal}
+    address,caption,cite,code,dfn,em,th,var,optgroup{font-style:normal;font-weight:normal}
+    input,button,textarea,select,optgroup,option{font-family:inherit;font-size:inherit;font-style:inherit;font-weight:inherit}
+    input,button,textarea,select{*font-size:100%}
+    a,img{border:0;}
+    a,a:visited{color:#5e5e5e; text-decoration:none;}
+    a:hover{color:#4183C4;text-decoration:underline;}
+    .clear{display:block;overflow:hidden;clear:both;height:0;line-height:0;font-size:0;}
+    .clearfix:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+    .clearfix{display:inline-table;}/* Hides from IE-mac \*/
+    *html .clearfix{height:1%;}
+    .clearfix{display:block;}/* End hide from IE-mac */
+    *+html .clearfix{min-height:1%;}
+    body{font:12px/180% Arial,Lucida,Verdana,"宋体",Helvetica,sans-serif;}
+</style>
+
+<script type="text/javascript" src="http://www.17sucai.com/static/js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        var iframeHeight = function () {
+            var _height = $(window).height() - 34;
+            $('#content').height(_height);
+        }
+        window.onresize = iframeHeight;
+        $(function () {
+            iframeHeight();
+        });
+
+    });
+
+</script>
+
+
+<div id="container" style="overflow:hidden;" style="margin-top: 30px">
+<div style="background-image: url(/images/abc.jpg);"><% include head %>
+<% include ui/login %>
+    
+</div>
+    <iframe border="0" id="content" src="http://www.17sucai.com/preview/11/2016-09-05/图片切换/index.html" frameborder="0" height="610px" width="100%" style="margin-top: 0.4px"></iframe>
+
+</div>
+<script type="text/javascript">
+    var _bdhmProtocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+    document.write(unescape("%3Cscript src='" + _bdhmProtocol + "hm.baidu.com/h.js%3F382f81c966395258f239157654081890' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<body style="background-image: url(/images/abc.jpg);">\
+<div style="margin-top:-100px;margin-left: 200px">
+    <table class="table table-bordered">
+    <thead>
+    <caption style="font-size: 40px;color: black">明星单品</caption>
+        <tr>
+            <td style="width: 400px"><a class="thumb" href="//item.mi.com/product/10000024.html" data-stat-aid="AA16077" data-stat-pid="2_17_1_80" target="_blank"><img src="//i3.mifile.cn/a4/5e2eb710-a99f-4235-ac5c-1b20b1e6c3b6" srcset="//i3.mifile.cn/a4/5e2eb710-a99f-4235-ac5c-1b20b1e6c3b6 2x" alt="小米5s 64GB" /></a>
+                            <h3 class="title"><a href="//item.mi.com/product/10000024.html" data-stat-aid="AA16077" data-stat-pid="2_17_1_80" target="_blank">小米5s 64GB</a></h3>
+                            <p class="desc">骁龙821处理器，超声波指纹识别</p>
+                            <p class="price">1999元</p></td>
+                           <td><a class="thumb" href="//item.mi.com/product/10000024.html" data-stat-aid="AA16077" data-stat-pid="2_17_1_80" target="_blank"><img src="//i3.mifile.cn/a4/5e2eb710-a99f-4235-ac5c-1b20b1e6c3b6" srcset="//i3.mifile.cn/a4/5e2eb710-a99f-4235-ac5c-1b20b1e6c3b6 2x" alt="小米5s 64GB" /></a>
+                            <h3 class="title"><a href="//item.mi.com/product/10000024.html" data-stat-aid="AA16077" data-stat-pid="2_17_1_80" target="_blank">小米5s 64GB</a></h3>
+                             <p class="desc">骁龙821旗舰处理器，轻薄金属机身</p>
+                            <p class="price">2299元起</p>
+                            <td>  <a class="thumb" href="//item.mi.com/product/10000015.html" data-stat-aid="AA16078" data-stat-pid="2_17_3_82" target="_blank"><img src="//i3.mifile.cn/a4/28f54c24-e1f8-4cd2-b05f-f47b324ba788" srcset="//i3.mifile.cn/a4/28f54c24-e1f8-4cd2-b05f-f47b324ba788 2x" alt="小米手机5 64GB" /></a>
+                            <h3 class="title"><a href="//item.mi.com/product/10000015.html" data-stat-aid="AA16078" data-stat-pid="2_17_3_82" target="_blank">小米手机5 64GB</a></h3>
+                            <p class="desc">骁龙820处理器，4轴防抖相机 </p>
+                            <p class="price">1799元</p></td>
+        </tr>
+    </thead>
+</table>
+</div>
+</body>
+

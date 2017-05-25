@@ -1,0 +1,52 @@
+<% include ../head %>
+<script>
+	function authInfo(id){
+		$.get('/admin/authInfo?id='+id,function(rhtml){
+			$('#mbody').html(rhtml);
+			$('#myModal').modal('show');
+		});
+		
+	}
+</script>
+<div class="row">
+	      <div class="col-sm-1"></div>
+	      <div class="col-sm-2"  style='background-color: #aaa'>
+	      	<% include ./left %>
+	      </div>
+	      <div class="col-sm-7" id='main'>
+	      	<table class="table table-hover">
+			  <caption>认证用户审核申请列表</caption>
+			  <thead>
+			    <tr>
+			      <th>真实名称</th>
+			      <th>地址</th>
+			      <th>申请时间</th>
+			      <th>操作</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			  <% rs.forEach(function(row){ %>
+			    <tr>
+			      <td><%-row.realname%></td>
+			      <td><%-row.address%></td>
+			      <td>
+			      <%
+			      	time = row.createtime;
+			      %>
+			      <%-time.getFullYear()%>年
+			      <%-time.getMonth()+1%>月
+			      <%-time.getDate()%>日
+			      </td>
+			      <td>
+			      	<a href='#' onclick='authInfo("<%-row.id%>")'>查看详细</a>
+			      </td>
+			    </tr>
+			  <% }) %>
+			  </tbody>
+			</table>
+	      </div>
+	      <div class="col-sm-1"></div>
+	      <!-- 模态框（Modal） -->
+	    	<% include ./authinfo %>
+  </body>
+</html>

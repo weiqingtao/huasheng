@@ -1,0 +1,84 @@
+create database huasheng;
+use huasheng;
+
+create table users(
+id bigint not null auto_increment primary key,
+email varchar(60) not null,
+pwd varchar(60) not null,
+nicheng varchar(60) not null,
+createtime timestamp not null,
+role tinyint not null default 1,/*0±í¹ÜÀíÔ±,1±íÆÕÍ¨ÓÃ»§,2±íÉêÇëÖÐ,3±íÈÏÖ¤µÄË½ÈËÓÃ»§,4±íÈÏÖ¤µÄ¹«Ë¾ÓÃ»§*/
+updtime timestamp not null,
+unique key emailuniq (email), 
+unique key nichenguniq (nicheng)
+)ENGINE=innodb DEFAULT CHARSET=utf8; 
+insert into users set email='admin',pwd='admin',nicheng='admin',role=0;
+alter table users add msgnum int(4) default 0;
+
+create table privateinfos(
+id bigint not null primary key,
+realname varchar(60) not null,
+idcode varchar(20) not null,	
+phone varchar(20) not null,	
+email varchar(120) not null,
+address varchar(240) not null,
+idphoto varchar(360) not null,
+userphoto varchar(360) not null,
+createtime timestamp not null,
+updtime timestamp not null,
+unique key idcodeuniq (idcode),
+unique key prphoneuniq (phone),
+unique key premailuniq (email)
+)ENGINE=innodb DEFAULT CHARSET=utf8; 
+
+create table msgs(
+id bigint not null auto_increment primary key,
+sendid bigint not null,
+toid bigint not null,
+message varchar(540) not null,
+createtime timestamp not null
+)ENGINE=innodb DEFAULT CHARSET=utf8; 
+
+
+create table shoptypes(
+id bigint not null auto_increment primary key,
+typename varchar(30) not null
+)ENGINE=myisam DEFAULT CHARSET=utf8; 
+insert into shoptypes set typename='机械';
+insert into shoptypes set typename='车辆';
+insert into shoptypes set typename='模具';
+insert into shoptypes set typename='其他';
+
+create table shops(
+id bigint not null auto_increment primary key,
+uid bigint not null,
+shopname varchar(120) not null,
+photourl varchar(120) not null,		/*店铺图片url*/
+shopintr varchar(480) not null,		/*店铺简介*/
+shoptype int not null,				/*店铺类型*/
+keywords varchar(120) not null,		/*关键词*/
+lng decimal(10,7) not null,
+lat decimal(10,7) not null,
+praise bigint not null default 0,   /*好评度*/
+liveflag tinyint not null default 0, /*0表在营业,1表暂停,2表关闭,-1表强制停业*/
+createtime timestamp not null
+)ENGINE=myisam DEFAULT CHARSET=utf8; 
+
+create table goodstype(
+id bigint not null auto_increment primary key,
+typename varchar(30) not null
+)ENGINE=myisam DEFAULT CHARSET=utf8; 
+
+create table goods(        /*商品信息*/
+id bigint not null auto_increment primary key,
+shopid bigint not null,
+typeid bigint not null,
+uid bigint not null,
+goodsname varchar(120) not null,
+goodsimg varchar(120) not null,		/*商品图片*/
+goodsintro varchar(480) not null, 
+price decimal(9,2) not null,
+praise int not null default 0,
+updtime timestamp not null,
+createtime timestamp not null
+)ENGINE=myisam DEFAULT CHARSET=utf8;

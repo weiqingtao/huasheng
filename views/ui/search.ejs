@@ -1,0 +1,38 @@
+<script>
+
+    function onSubSearch(){
+        if(searchForm.seachTarget.value==1){
+            searchForm.action='/search/goods';
+        }else{
+            searchForm.action='/search/shop';
+        }
+        return true;
+    }
+</script>
+<form id='searchForm' name='searchForm' method='get' action='/search/goods' onsubmit="return onSubSearch();">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12">
+            
+                <table width="100%">
+                    <tr>
+                        <td>
+                <select class="form-control" name='seachTarget'>
+                      <option value='1'>按商品名</option>
+                      <option value='2'>按店铺名</option>
+                    </select>
+                        </td>
+                        <td>
+                <div class="input-group">
+                    <input type="text" class="form-control" name='keywords'>
+                    <span class="input-group-btn">
+                        <input type='submit' class="btn btn-default" value='搜'>
+                    </span>
+                </div><!-- /input-group -->
+                    </td>
+                   </tr>
+                </table>
+            
+            </div><!-- /.col-lg-6 -->
+        </div><!-- /.row -->
+</form>
+    

@@ -1,0 +1,54 @@
+ <!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="myModalLabel">登陆/注册</h4>
+            </div>
+            <div class="modal-body">
+                <form action="/users/login" method="post">
+                    <table align='center' height='213px' style="float: left;">
+                        <tr>
+                            <td align='right'>email:</td>
+                            <td><input type="text" name="email" class="form-control" placeholder="请输入email"></td>
+                        </tr>
+                        <tr>
+                            <td align='right'>密码：</td>
+                            <td><input type="password" name="pwd" class="form-control" placeholder="请输入密码"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" align="center">
+                                <button type="submit" class="btn btn-primary">登陆</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+                <form action="/users/zhuce" method="post">
+                    <table align="center" height='200px'>
+                    <tr>
+                        <td align="right">email:</td>
+                        <td><input type="text" name="email" class="form-control" placeholder="请输入email"></td>
+                    </tr>
+                    <tr>
+                            <td align='right'>密码：</td>
+                            <td><input type="password" name="pwd" class="form-control" placeholder="请输入密码"></td>
+                     </tr>
+                      <tr>
+                            <td align='right'>确认密码：</td>
+                            <td><input type="password" name="repwd" class="form-control" placeholder="请输入密码"></td>
+                     </tr>
+                      <tr>
+                        <td align="right">昵称：</td>
+                        <td><input type="text" name="nicheng" class="form-control" placeholder="请输入昵称"></td>
+                    </tr>
+                    <tr>
+                            <td colspan="2" align="center">
+                                <button type="submit" class="btn btn-primary">注册</button>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->

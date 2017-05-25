@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+ <head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+  <link rel="stylesheet" href="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css">  
+   <script src="./javascripts/jquery-2.1.4.min.js"></script>
+   <script src="http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <link rel="stylesheet" href="http://cache.amap.com/lbs/static/main.css?v=1.0"/>
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.3&key=ebb3310e602e7027987911af5e30be56"></script>
+ </head>
+ <body>
+  <div id="mapContainer"></div>
+  <script>
+	function init(){
+		
+	}
+    //初始化地图对象，加载地图
+    var map = new AMap.Map('mapContainer', {
+        //resizeEnable: true,
+		//rotateEnable: true,
+		//dragEnable: true,
+		//zoomEnable: true,
+		//设置可缩放的级别
+		//zooms: [3,18], //手机上默认为3~19缩放比例
+		//传入2D视图，设置中心点和缩放级别
+		view: new AMap.View2D({
+			center: new AMap.LngLat(116.397428, 39.90923),
+			zoom: 18
+		})
+    });
+    var evt=null;
+	function eventHandler(e){
+		evt = e;
+		$('#myModal').modal('show');
+		/*var lnglat = e.lnglat;
+		alert(lnglat.lng);   //经度
+		alert(lnglat.lat);	//纬度
+		var marker = new AMap.Marker({                 
+		  map:map,                 
+		  position:e.lnglat,  
+		  title:"商店",
+		  icon:"http://webapi.amap.com/images/0.png",
+		  offset:new AMap.Pixel(-10,-34)
+	   }); 
+	   //mapObj.setCenter(lnglat);
+	   marker.setMap(map);  //在地图上添加点
+	   marker.setTitle("专卖鼠标");
+	   marker.setLabel({//label默认蓝框白底左上角显示，样式className为：amap-marker-label
+	        offset: new AMap.Pixel(-10, -20),//修改label相对于maker的位置
+	        content: "逻辑商店"
+	    });
+	    */
+	}
+
+	var listener = AMap.event.addListener(map,"click",eventHandler);
+
+	function dian(){
+		var marker = new AMap.Marker({                 
+		  map:map,                 
+		  position:evt.lnglat,  
+		  title:$('#name').val(),
+		  icon:"http://webapi.amap.com/images/0.png",
+		  offset:new AMap.Pixel(-10, -20)
+	   }); 
+
+		var po = evt.lnglat;
+		for(var key in po){
+			console.log(po[key]);
+		}
+
+		// alert(typeof(evt.lnglat));
+		// alert(typeof(evt.lnglat.getLng()));
+
+		marker.setMap(map);
+		marker.setLabel({
+	        offset: new AMap.Pixel(-10, -20),
+	        content: $('#jie').val()
+	    });
+	}
+    
+</script>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							信息
+						</h4>
+					</div>
+					<div class="modal-body">
+						名称：<input type="text" id="name" />
+						<br/>简介：<input type="text" id="jie" />
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<button type="button" class="btn btn-primary" onclick='dian();' data-dismiss="modal">
+							提交
+						</button>
+					</div>
+				</div><!-- /.modal-content -->
+			</div><!-- /.modal -->
+		</div>
+ </body>
+</html>

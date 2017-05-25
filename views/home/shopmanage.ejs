@@ -1,0 +1,112 @@
+<% include ../head %>
+
+<style>
+	#myform input{
+		margin-top:6px;
+	}
+	#myform textarea{
+		margin-top:6px;
+	}
+	#myform label{
+		margin-top:6px;
+	}
+	#myform select{
+		margin-top:6px;
+	}
+</style>
+<script>
+function onSubPub(){
+	if(pubform.shopname.value==''){
+		alert('营业点名称不允许空');
+		pubform.shopname.focus();
+		return false;
+	}
+	if(pubform.shopintr.value==''){
+		alert('营业点简介不允许空');
+		pubform.shopintr.focus();
+		return false;
+	}
+	if(pubform.shoptype.value==0){
+		alert('请选择营业类别');
+		pubform.shoptype.focus();
+		return false;
+	}
+
+	return true;
+}
+</script>
+<div class="row">
+	      <div class="col-sm-1"></div>
+	      <div class="col-sm-2" style="margin-top: 30px">
+	      	<% include ./left %>
+	      </div>
+	      <div class="col-sm-8" id='main' style="margin-top: 30px">
+	      <!---------标签页------------------------------>
+	      <ul id="myTab" class="nav nav-tabs">
+			<li class="active">
+				<a href="#shopInfo" data-toggle="tab">
+					 经营点信息
+				</a>
+			</li>
+			<li>
+				<a href="#goodsInfo" data-toggle="tab">
+					商品管理
+				</a>
+			</li>
+		  </ul>
+		 <div id="myTabContent" class="tab-content">
+			<div class="tab-pane fade <% if(!tagflag){%>in active<%}%>" id="shopInfo">
+				<% include ./shopinfo %>
+			</div>
+			<div class="tab-pane fade <% if(tagflag){%>in active<%}%>" id="goodsInfo">
+				<% include ./goodsmanage %>
+			</div>
+		  </div>
+	      	<!--------------标签页------------------------>
+	      </div>
+	      <div class="col-sm-1"></div>
+
+<!---------------- 模态框 ---------------------------->
+	      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			<form name='pubform' method='post' action='./pubshop' onsubmit='return onSubPub();' enctype="multipart/form-data">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							&times;
+						</button>
+						<h4 class="modal-title" id="myModalLabel">
+							填写营业点信息
+						</h4>
+					</div>
+					<div class="modal-body">
+						<div class="form-group" id='myform'>
+						    <input type="text" class="form-control" name="shopname" placeholder="请输入营业点名称">
+						    <input type="text" class="form-control" name="shopintr" placeholder="请输入营业点简介">
+						    <input type="text" class="form-control" name='keywords' placeholder="请输入查询关键词">
+						    <select class="form-control" name='shoptype'>
+						      <option value='0'>请选择经营类别</option>
+						      <% shoptypeRs.forEach(function(row){ %>
+						      <option value='<%-row.id%>'>
+						      <%-row.typename%>
+						      </option>
+						      <%})%>
+						    </select>
+						    <label for="lastname" class="col-sm-2 control-label">店铺图片</label>
+						    <input type="file" id="inputfile" name='photourl'>
+						    <input type='hidden' name='lng'>
+						    <input type='hidden' name='lat'>
+					  </div>
+					</div>
+					<div class="modal-footer" style='text-align:center'>
+						<button type="button" class="btn btn-default" data-dismiss="modal">关闭
+						</button>
+						<input type="submit" class="btn btn-primary" onclick='dian();' value='提交'>
+						</input>
+					</div>
+				</div><!-- /.modal-content -->
+			</form>
+			</div><!-- /.modal -->
+		</div>
+  </body>
+</html>

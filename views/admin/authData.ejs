@@ -1,0 +1,87 @@
+<script>
+function applyPass(){
+    if(confirm('确定审核通过吗?')){
+        location.href='/admin/applyPass?id=<%-rs.id%>';
+    }
+}
+function applyRefuse(){
+    $('#applyInfo').hide();
+    $('#refuseTable').show();
+}
+function onback(){
+    $('#refuseTable').hide();
+    $('#applyInfo').show();
+}
+</script>
+<table id='applyInfo' height='240' align='center'>
+    <tr>
+        <td colspan='2' align="center">
+            用户申请数据
+        </td>
+    </tr>
+    <tr>
+        <td align='right'>真名:</td>
+        <td>
+            <%-rs.realname%>
+        </td>
+    </tr>
+    <tr>
+        <td align='right'>身份证号:</td>
+        <td>
+            <%-rs.idcode%>
+        </td>
+    </tr>
+    <tr>
+        <td align='right'>电话:</td>
+        <td>
+            <%-rs.phone%>
+        </td>
+    </tr>
+    <tr>
+        <td align='right'>email:</td>
+        <td>
+            <%-rs.email%>
+        </td>
+    </tr>
+    <tr>
+        <td align='right'>地址:</td>
+        <td>
+            <%-rs.address%>
+        </td>
+    </tr>
+    <tr>
+        <td align='right'>身份证照片:</td>
+        <td>
+            <img src="<%-rs.idphoto%>"/>
+        </td>
+    </tr>
+    <tr>
+        <td align='right'>手持身份证照片:</td>
+        <td>
+            <img src="<%-rs.userphoto%>"/>
+        </td>
+    </tr>
+    <tr>
+        <td align='center' colSpan='2'>
+            <input type="button" class="btn btn-primary" value='审核通过' onclick='applyPass()'/>&nbsp;
+            <input type="button" class="btn btn-primary" value='审核驳回' onclick="applyRefuse()"/>
+        </td>
+    </tr>
+</table>
+<form id='refuseTable' name='refuseTable' method="post" action='./applyRefuse'  style='display:none'>
+<table  height='240' align='center'>
+<tr>
+    <td align='center'>
+        驳回理由:<br/>
+        <textarea name='message' cols='69' rows='9'></textarea>
+    </td>
+</tr>
+<tr>
+    <td align='center'>
+    <input type='hidden' name='id' value='<%-rs.id%>'/>
+    <input type="submit" class="btn btn-primary" value='驳回'/>&nbsp;
+    <input type="button" class="btn btn-primary" value='返回' onclick='onback()'/>
+    </td>
+</tr>
+</table>
+</form>
