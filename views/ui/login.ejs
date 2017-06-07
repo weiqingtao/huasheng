@@ -7,7 +7,7 @@
                 <h4 class="modal-title" id="myModalLabel">登陆/注册</h4>
             </div>
             <div class="modal-body">
-                <form action="/users/login" method="post">
+                <form name="loginForm" action="/users/login" method="post">
                     <table align='center' height='213px' style="float: left;">
                         <tr>
                             <td align='right'>email:</td>
@@ -19,6 +19,10 @@
                         </tr>
                         <tr>
                             <td colspan="2" align="center">
+                            <input type="hidden" name="url">
+                            <script type="text/javascript">
+                                loginForm.url.value = location.href;
+                            </script>
                                 <button type="submit" class="btn btn-primary">登陆</button>
                             </td>
                         </tr>

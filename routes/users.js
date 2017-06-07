@@ -35,7 +35,7 @@ router.post('/login', function(req, res, next) {
 			loginbean.role = rs.role;
 			loginbean.msgnum = rs.msgnum;
 			req.session.loginbean=loginbean;
-			res.redirect('/');
+			res.redirect(req.body.url);
 		}else{
 			res.send("<script>alert('email/密码错误');location.href='/';</script>");
 		}

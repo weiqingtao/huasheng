@@ -203,10 +203,10 @@ router.post('/pubgoods', function(req, res, next) {
 //查到信息
 router.get('/getGoodsInfo', function(req, res, next) {
   goodsid = req.query.id;
+
   GoodsModel.findOne({where:{id:goodsid}}).then(function(goodsInfo){
   res.send(goodsInfo);
   });
-
 })
  
  //删除商品

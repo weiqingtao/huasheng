@@ -1,0 +1,77 @@
+<% include head %>
+<script>//全选
+searchForm.keywords.value="<%-keywords%>";
+function selectAll(){
+var a = document.getElementsByTagName("input");
+if(a[0].checked){
+for(var i = 0;i<a.length;i++){
+if(a[i].type == "checkbox") a[i].checked = false;
+}
+}
+else{
+for(var i = 0;i<a.length;i++){
+if(a[i].type == "checkbox") a[i].checked = true;
+}
+}
+}
+</script>
+   <script>
+   	function oderlist(){
+   		var cn = goodsForm.chooseOne;
+   		var len = cn.length;
+   		var orderStr = '';
+   		for(i=1;i<len;i++){
+   			if(cn[i].checked){
+   				orderStr += ','+cn[i].value;
+   			}
+   		}
+   		location.href='createorder?orderStr='+orderStr;
+   	}
+   </script>
+<div class="row">
+	      <div class="col-sm-1"></div>
+	      <div class="col-sm-10">
+	      <table class="table">
+	<caption style="font-size: 30px">购物车详情</caption>
+	<thead>
+	 
+		<tr>
+			<th>商品图片</th>
+			<th>商品姓名</th>
+			<th>价格</th>
+			<th>购买数量</th>
+			<th>是否购买 &nbsp;&nbsp;&nbsp;<input type="button" name="select" onclick="selectAll()" value="全选"/></th>
+		</tr>
+	</thead>
+	<form name='goodsForm' id='goodsForm'>
+			    <input type='hidden' name='chooseOne'>
+			  <% shopList.forEach(function(row){ %>
+			    <tr>
+			    <td><img style="width: 150px" src='../<%-row.goodsimg%>'/></td>
+			      <td>
+			      	<%-row.goodsname%>
+			      </td>
+			      <td>
+			      	<%-row.price%>
+			      </td>
+			      <td><input type="text" name="number" value="<%-row.num%>"></td>
+			      <td>
+			      	<input type='checkbox' name='chooseOne' value='<%-row.shopid%>_<%-row.goodsid%>'/>
+			      </td>
+			    </tr>
+			  <% }) %>
+			  	</form>
+			  	 <tr>
+			  	<td colspan='5' align='center'>
+			  		<button type="button" class="btn btn-success" onclick='oderlist()'>确认购买</button>
+			  	</td>
+			  </tr>
+</table>
+	      </div>
+	     
+	      <div class="col-sm-1"></div>
+</div>
+<!-- 模态框（Modal） -->
+	    <% include ui/login %>
+</body>
+</html>

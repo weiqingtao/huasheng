@@ -12,7 +12,7 @@ var home = require('./routes/home');
 var admin = require('./routes/admin');
 var msg = require('./routes/msg');
 var search = require('./routes/search');
-
+var pay = require('./routes/pay');
 //加载ueditor 模块  
 var ueditor = require("ueditor");  
 
@@ -61,7 +61,7 @@ app.use("/ueditor/ue", ueditor(path.join(__dirname, 'public'), function (req, re
 }));  
 
 
-var openPage = ['/','/aa','/users/zhuce','/users/login','/users/logout','/search/goods','/search/shop'];
+var openPage = ['/','/aa','/users/zhuce','/users/login','/users/logout','/search/goods','/search/shop','/pay/putshopping'];
 app.use(function(req, res, next) {
   var url = req.originalUrl;
   url = (url.split('?'))[0];
@@ -83,6 +83,7 @@ app.use('/home', home);
 app.use('/admin', admin);
 app.use('/msg', msg);
 app.use('/search', search);
+app.use('/pay', pay);
 // catch 404 and forward to error handler
 
 

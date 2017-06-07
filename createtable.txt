@@ -82,3 +82,26 @@ praise int not null default 0,
 updtime timestamp not null,
 createtime timestamp not null
 )ENGINE=myisam DEFAULT CHARSET=utf8;
+
+
+create table shoppings(        /*购物意向表*/
+id bigint not null auto_increment primary key,
+goodsid bigint not null,
+uid bigint not null,
+price decimal(9,2) not null,
+num int not null,
+shopid bigint not null,
+updtime timestamp not null,
+createtime timestamp not null,
+orderid bigint not null default 0,
+unique key shoppinguniq (goodsid,uid,orderid) //联合唯一
+)ENGINE=innodb DEFAULT CHARSET=utf8;
+
+create table orders(			/*订单表*/
+id bigint not null auto_increment primary key,
+total decimal(9,2) not null,
+uid bigint not null,
+shopid bigint not null,
+createtime timestamp not null,
+state tinyint not null default 0	/*0表未支付,1表支付*/
+)ENGINE=innodb DEFAULT CHARSET=utf8;

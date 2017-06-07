@@ -1,0 +1,61 @@
+<link rel="stylesheet" href="http://cache.amap.com/lbs/static/main.css?v=1.0"/>
+    <script type="text/javascript"
+            src="http://webapi.amap.com/maps?v=1.3&key=ebb3310e602e7027987911af5e30be56"></script>
+	      	<div id="mapContainer" style='margin-top:8px;margin-left:12px;width:900px;height:600px'></div>
+			<div id="tip">
+	      	 <script>
+            //初始化地图对象，加载地图
+        var map = new AMap.Map('mapContainer', {
+          view: new AMap.View2D({
+            center: new AMap.LngLat(<%-rsGoods.lng%>, <%-rsGoods.lat%>),
+            zoom: 18
+          })
+        });
+        var marker = new AMap.Marker({                 
+              map:map,                 
+              position: [<%-rsGoods.lng%>, <%-rsGoods.lat%>],  
+              title:"<%-rsGoods.goodsname%>",
+              icon:"http://webapi.amap.com/images/0.png",
+              offset:new AMap.Pixel(-10, -20)
+             });
+        marker.setLabel({
+                  offset: new AMap.Pixel(-20, -20),
+                  content: "<%-rsGoods.goodsintro%>"
+              }); 
+          AMap.plugin(['AMap.ToolBar','AMap.Scale','AMap.OverView'],
+            function(){
+                map.addControl(new AMap.ToolBar());
+
+                map.addControl(new AMap.Scale());
+
+                map.addControl(new AMap.OverView({isOpen:true}));
+        });
+        AMap.plugin(['AMap.Autocomplete','AMap.PlaceSearch'],function(){
+      var autoOptions = {
+        city: "北京", //城市，默认全国
+        input: "keyword"//使用联想输入的input的id
+      };
+      autocomplete= new AMap.Autocomplete(autoOptions);
+      var placeSearch = new AMap.PlaceSearch({
+            city:'北京',
+            map:map
+      })
+      AMap.event.addListener(autocomplete, "select", function(e){
+         //TODO 针对选中的poi实现自己的功能
+         placeSearch.search(e.poi.name)
+      });
+    });
+
+        function eventHandler(e){
+          // alert(e.lng);
+          pubform.lng.value=e.lnglat.getLng();
+          pubform.lat.value=e.lnglat.getLat();
+          $('#myModal').modal('show');
+        }
+
+          var listener = AMap.event.addListener(map,"click",eventHandler);
+        
+  
+
+          </script>
+	      </div>
